@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+      integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/idea.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/detail.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/account.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/changepassword.css' %}">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <ul>
+      <li><a href="{% url 'Home' %}" class="first">Ev</a></li>
+      <li><a href="{% url 'Apps' %}">Uygulamalar</a></li>
+      <li><a href="{% url 'Ideas' %}">Fikirler</a></li>
+      <li>
+        <a href="{% url 'Account' %}"
+          ><img
+            class="rounded-circle"
+            src="{% static 'images/icon.png' %}"
+            width="32"
+            height="32"
+        /></a>
+      </li>
+    </ul>
+    <a id="exit" href="{% url 'Logout' %}" title="Çıkış Yap"><i class="fas fa-sign-out-alt"></i></a>
+
+    {% block content %}
+
+    
+    {% endblock content %}
+    <script
+      src="https://kit.fontawesome.com/326457a07e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+      integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script
+      src="https://kit.fontawesome.com/326457a07e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+    <style>
+      #copyright{
+        position: relative;
+        bottom: 1px;
+      }
+    </style>
+  </body>
+</html>

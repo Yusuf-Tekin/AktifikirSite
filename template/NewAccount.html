@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kayıt Ol</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+            integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="crossorigin="anonymous"
+            />
+
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <form class="form-signin">
+                {% csrf_token %}
+                <h2 class="form-signin-heading">Kayıt Ol</h2>
+                <hr class="colorgraph">
+                <br>
+
+                <input type="text" name="Username" id="Username"
+                    placeholder="Kullanıcı Adı" required="true" autofocus="true"
+                    />
+
+                <input type="text" name="Email" id="Email" class="mt-3"
+                    placeholder="E-Posta" required="true"
+                    />
+
+                <input type="password" id="Password" class="mt-3"
+                    name="Password"
+                    placeholder="Parola" required="" />
+
+                <a href="{% url 'Login' %}" id="NotHaveAccount" title="Yeni
+                    Hesap Oluştur">Zaten Hesabım Var!</a>
+
+                <button type="submit" class="btn-block" id="LoginButton"
+                    titl e="Yeni Hesap
+                    Oluştur">Devam Et</button>
+            </form>
+
+        </div>
+
+
+
+        <script src="https://kit.fontawesome.com/326457a07e.js"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="crossorigin="anonymous"></script>
+        <script src="{% static 'js/bootstrap.js'%}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            $('.form-signin').submit(function(e){
+                e.preventDefault();
+                username =document.querySelector('#Username')
+                password = document.querySelector('#Password')
+                email =document.querySelector('#Email')
+                $.ajax({
+                    type: "POST",
+                    url: "/newaccount/",
+                    data: {
+                        'Username' : $('#Username').val(),
+                        'Email' : $('#Email').val(),
+                        'Password' : $('#Password').val(),
+                        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success:function(){
+                        username.value = ""
+                        password.value = ""
+                        email.value = ""
+                        Swal.fire(
+                        {
+                            icon: 'success',
+                            title: 'Tamamlandı',
+                            text: 'Şimdi hesabınıza giriş yapın!',
+                            confirmButtonText : "Kapat",
+                            footer: '<a href = "{% url "Login" %}">Giriş Yap</a>'
+                        }   
+                        )
+                    },
+                    error:function() {
+                        Swal.fire(
+                        {
+                            icon: 'error',
+                            title: 'Tamamlanamadı',
+                            text: 'Bizden Kaynaklanan bir hata yüzünden işlem tamamlanamadı!',
+                            confirmButtonText : "Kapat",
+                        }   
+                        )
+                    }
+
+                    })
+            })
+        </script>
+    </body>
+</html>

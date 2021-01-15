@@ -1,0 +1,179 @@
+{% extends 'template.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+      {% endblock title%}
+    </title>
+  </head>
+  <body>
+    {% block content %}
+    <p id="SekmeAdi" class="text-light"
+      style="margin-left: 30px;
+      top: 10px;
+      position: absolute;
+      font-size: 3vw;">{{request.user.username}}</p>
+
+    <div class="container">
+      <div class="card mx-auto mt-5" id="card">
+        <div class="card-body">
+          <h3 class="text-light">Hesap Detayı</h3>
+          <hr>
+          <form>
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" readonly
+                  value="{{request.user.username}}">
+              </div>
+              <div class="col mt-3">
+                <input type="text" class="form-control" placeholder="Email"
+                  value="{{request.user.email}}">
+              </div>
+              <div class="col mt-3">
+                <input type="text" class="form-control" readonly
+                  value="{{request.user.date_joined}} tarihinde katıldın">
+              </div>
+              <div class="col mt-3">
+                <a href="{% url 'ChangePassword' %}" class="btn btn-dark">Parola
+                  Güncelle</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr>
+      {% if apps %}
+      <div class="row match-height">
+        <h2 class="text-light">Uygulamalar</h2>
+        {% for data in apps %}
+        <div class="col-12 col-lg-4 col-xl-4 mt-5" id="apps{{data.id}}">
+
+          <div class="card" id="DataCard">
+            <center><img src="{{MEDIA_URL}}/{{data.AppPhoto}}" width="300"></center>
+            <div id="dataCenter" class="mx-auto">
+              <h5 class="p-md-2 mt-2" title="{{data.AppHeader}}">{{data.AppHeader}}</h5>
+              <div id="AppContent">
+                {{data.AppContent}}
+              </div>
+              <div id="AppDate" class="mb-3">
+                {% if data.AppType == "web" %}
+                <small class="text-danger m-3">Web</small>
+                {% elif data.AppType == "desktop" %}
+                <small class="text-danger m-3">Masaüstü</small>
+                {% elif data.AppType == "mobile" %}
+                <small class="text-danger m-3">Mobil</small>
+                {% endif %}
+                {{data.UpdateDate}}
+              </div>
+            </div>
+            <center><a href="{% url 'AppDetail' data.id %}"
+                class="text-decoration-none" id="examin">İncele</a>
+                {% csrf_token %}
+              <button onclick = "deleteapp({{data.id}});" title="Uygulama'yı Sil" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+              </center>
+                
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <span class="alert text-light">
+        <center>
+          <p class="h4">Henüz uygulama eklemedin</p>
+          <small class="text-danger">Hemen Uygulama Ekle!</small>
+          <br>
+          <br>
+          <i class="fas fa-angle-double-down h3"></i>
+          <br>
+          <a href="{% url 'NewApp' %}" id="AddAppButton" title="Uygulamanı
+            Paylaş"><i class="fas fa-plus"></i></a>
+        </center>
+      </span>
+      {% endif %}
+      <hr>
+      {% if ideas %}
+      <div class="row mb-lg-5">
+        <h2 class="text-light">Fikirler</h2>
+        {% for data in ideas %}
+        <div class="col-12 col-sm-12 col-lg-6 col-xl-6 mt-4" id="idea{{data.id}}">
+          <div class="card-header" style="color: white;background-color:
+            #272E3D;">
+
+            <center><h4 id="three-dot" class="h4 p-xl-3">{{data.IdeaHeader}}</h4></center>
+          </div>
+          <div class="card-body" style="background-color: #4F5F7D;">
+            <center>
+              <div id="three-dot" class="text-light">{{data.IdeaContent}}</div>
+            </center>
+            <br><br>
+            <small class="text-light float-end">{{data.UpdateDate}}</small>
+            <a href="{% url 'IdeaDetail' data.id %}" id="examin" class="mt-4
+              position-relative text-decoration-none">İncele</a>
+              {% csrf_token %}
+              <button onclick = "deleteidea({{data.id}});" title="Fikri'ni Sil" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <span class="alert text-light">
+        <center>
+          <p class="h4">Henüz fikir bulamadın!</p>
+          <small class="text-danger">Biraz daha düşün ve aklına gelen ilk güzel
+            fikri paylaş!</small>
+          <br>
+          <br>
+          <i class="fas fa-angle-double-down h3"></i>
+          <br>
+          <a href="{% url 'NewIdea' %}" id="AddIdeaButton" title="Fikrini
+            Paylaş"><i class="fas fa-plus"></i></a>
+        </center>
+      </span>
+      {% endif %}
+      <script>
+          function deleteidea(id){
+            $.ajax({
+              type:'POST',
+              url :'/deleteidea/'+id+'/',
+              data:{
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+              },
+              success:function(msg){
+                if(msg.msg == "true"){
+                  toastr.success('Paylaştığın fikir silindi.')
+                  document.querySelector('#idea'+id).remove();
+                }
+                else{
+                  toastr.error('Paylaştığın fikir silinemedi.')
+                }
+              }
+            })
+          }
+          function deleteapp(id){
+            $.ajax({
+              type:'POST',
+              url :'/deleteapps/'+id+'/',
+              data:{
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+              },
+              success:function(msg){
+                if(msg.msg == "true"){
+                  toastr.success('Paylaştığın uygulama silindi.')
+                  document.querySelector('#apps'+id).remove();
+                }
+                else{
+                  toastr.error('Paylaştığın uygulama silinemedi.')
+                }
+              }
+            })
+          }
+      </script>
+      {% endblock content %}
+    </body>
+  </html>

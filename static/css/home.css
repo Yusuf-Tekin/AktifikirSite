@@ -1,0 +1,376 @@
+body{
+    width:99%;
+    background: linear-gradient(to right,#57698A,#272E3D);
+}
+#imagethink{
+    position: relative;
+    width: 100px;
+}
+#image{
+    position: relative;
+    bottom: 30px;
+    margin-top: 30px;
+}
+#bottomhead{
+    margin-top: 40px;
+    color: white;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin-bottom: 40px;
+}
+#formusername{
+    position: relative;
+    width:60%;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #57698A;
+}
+#formheader{
+    position: relative;
+    width:60%;
+    margin-top: 20px;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #57698A;
+}
+#formmessage{
+    position: relative;
+    width:60%;
+    margin-top: 20px;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #57698A;
+    min-height: 150px;
+
+}
+.button{
+    position: relative;
+    margin-right: 300px;
+}
+#FormSubmitButton{
+    width: 150px;
+    margin-top: 20px;
+    background-color: #272E3D;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 6px;
+}
+#LetsGoButton{
+    width: 150px;
+    background-color: #272E3D;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    animation: pulse-animation 1s infinite;
+    outline: none;
+    transition: 0.4s;
+
+}
+#LetsGoButton:hover{
+    background-color: #f7e365;
+    color: black;
+}
+#contactform{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+#exit{
+    background-color: orange;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: white;
+    background-color: #4c5b78;
+    border: 1px solid white;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+@media(max-width:450px){
+    #exit{
+        background-color: orange;
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 6px;
+        color: white;
+        background-color: #4c5b78;
+        border: 1px solid white;
+        position: absolute;
+        right: 30px;
+        top: 100px;
+    } 
+}
+@media (min-width:801px){
+    
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 15px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    li {
+        float: left;
+    }
+
+    li a {
+        position: relative;
+        display: block;
+        padding:12px 16px;
+        background-color: #4F5F7D;
+        color:white;
+        text-decoration:none; 
+        box-shadow: 15px 10px 10px 5px #272E3D;
+        transition: all 0.75s;
+        top: 0px;
+        
+    }
+    li a:hover{
+        background-color:#272E3D; 
+        color: white;
+        top: 8px;
+
+    }
+    .last{
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .first{
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    #AppName{
+        position: relative;
+        width: 250px;
+        margin-top: 50px;
+        text-align: left;
+        margin-left: 150px;
+        font-size: 80px;
+        color: white;
+        font-family: 'Audiowide', cursive;
+    }
+    #AppSlogan{
+        position: relative;
+        left: 150px;
+        width: 250px;
+        text-align: left;
+        font-size: 18px;
+        color:gray;
+        font-family: 'Audiowide', cursive;
+    }
+    #knowusbutton{
+        width: 140px;
+        position: relative;
+        margin-right: auto;
+        left: 180px;
+        border: none;
+        background-color: #272E3D;
+        border-radius: 5px;
+        padding: 15px 15px;
+        font-size: 24px;
+        font-family: 'Big Shoulders Stencil Text', cursive;
+        color: white;
+        transition: 1s;
+        outline: none;
+        animation: pulse-animation 1s infinite;
+        text-decoration: none;
+
+    }
+    #Right{
+        margin-top: 20px;
+        position: relative;
+        background-color: #272E3D;
+        color:white;
+        font-family: 'Open Sans Condensed', sans-serif;
+        border: 1px solid white;
+    }
+      
+    @keyframes pulse-animation {
+        0% {
+          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+        }
+        100% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+    }
+    @keyframes red-animation {
+        0% {
+          box-shadow: 0 0 0 0px rgba(70,0,0);
+        }
+        100% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+    }
+     
+    #DesktopAppCard{
+        position: relative;
+        width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #272E3D;
+        border: 1px solid white;
+        color: white;
+        
+    }
+    #Header{
+        position: relative;
+        text-align: center;
+        font-family: 'Open Sans Condensed', sans-serif;
+
+    }
+    #smalltext{
+        font-size: 15px;
+        color: wheat;
+    }
+    #DesktopButton{
+        width: 110px;
+        position: relative;
+        border: 1px solid;
+        background-color: #272E3D;
+        border-radius: 3px;
+        padding: 10px 10px;
+        font-size: 24px;
+        font-family: 'Big Shoulders Stencil Text', cursive;
+        color: white;
+        outline: none;
+        animation: red-animation 1s infinite;
+    }
+}
+@media (max-width:800px){
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 25px;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    li {
+        float: left;
+    }
+
+    li a {
+        position: relative;
+        display: block;
+        padding:12px 16px;
+        background-color: #4F5F7D;
+        color:white;
+        text-decoration:none; 
+        box-shadow: 15px 10px 10px 5px #272E3D;
+        transition: all 0.75s;
+        top: 0px;
+        
+    }
+    li a:hover{
+        background-color:#272E3D; 
+        color: white;
+        top: 8px;
+
+    }
+    .last{
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    .first{
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+
+    #AppName{
+        position: relative;
+        text-align: center;
+        font-size: 80px;
+        color: white;
+        font-family: 'Audiowide', cursive;
+    }
+    #AppSlogan{
+        position: relative;
+        text-align: center;
+        font-size: 18px;
+        color:white;
+        font-family: 'Audiowide', cursive;
+    }
+    #knowusbutton{
+        position: relative;
+        width: 160px;
+        border: none;
+        background-color: #272E3D;
+        border-radius: 5px;
+        padding: 15px 15px;
+        font-size: 24px;
+        font-family: 'Big Shoulders Stencil Text', cursive;
+        color: white;
+        transition: 1s;
+        outline: none;
+        animation: pulse-animation 1s infinite;
+        text-decoration: none;
+    }
+    
+    #contactform{
+        width: 90%;
+    }
+    @keyframes pulse-animation {
+        0% {
+          box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+        }
+        100% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+      }
+    #Right{
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-top: 50px;
+        position: relative;
+        background-color: #272E3D;
+        color:white;
+        font-family: 'Open Sans Condensed', sans-serif;
+        border: 1px solid white;
+    }
+    #DesktopAppCard{
+        position: relative;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #272E3D;
+        border: 1px solid white;
+        color: white;
+    }
+
+    #Header{
+        position: relative;
+        text-align: center;
+        font-family: 'Open Sans Condensed', sans-serif;
+
+    }
+    #smalltext{
+        font-size: 15px;
+        color: wheat;
+    }
+    #DesktopButton{
+        width: 110px;
+        position: relative;
+        border: 1px solid;
+        background-color: #272E3D;
+        border-radius: 3px;
+        padding: 10px 10px;
+        font-size: 24px;
+        font-family: 'Big Shoulders Stencil Text', cursive;
+        color: white;
+        outline: none;
+        animation: pulse-animation 1s infinite;
+    }
+    
+}

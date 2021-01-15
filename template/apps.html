@@ -1,0 +1,97 @@
+
+{% extends 'template.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+            Uygulamalar
+            {% endblock title %}
+        </title>
+
+    </head>
+    <body>
+
+        {% block content %}
+        <p id="SekmeAdi" class="text-light"
+            style="margin-left: 30px;
+            top: 10px;
+            position: absolute;
+            font-size: 3vw;">Uygulamalar</p>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                    <img src="{% static 'images/apps.png' %}" style="position:
+                        absolute; margin-top: 20px;" width="40" height="40">
+
+                    <a href="{% url 'NewApp' %}" id="NewAppButton"
+                        title="Uygulamanı Tanıtmaya Başla"><i class="fas
+                            fa-plus"></i></a>
+                    <hr style="border: 1px solid white;margin-top: 70px;">
+                </div>
+                <div class="row match-height" id="JsonApp">
+
+                </div>
+                <div class="row">
+                    {% if data %}
+                    {% for data in data %}
+                    <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mt-5">
+
+                        <center><h5 class="text-light">{{data.Owner}} paylaştı</h5></center>
+                        <div class="card" id="DataCard">
+                            <div class="">
+                                <center><img src="{{ MEDIA_URL }}/{{data.AppPhoto}}"
+                                    width="300" height="200"></center>
+                            </div>
+                            <div id="dataCenter" class="mx-auto card-body">
+                                <h5 class="p-md-2 mt-2"
+                                    title="{{data.AppHeader}}">{{data.AppHeader}}</h5>
+                                <div id="AppContent">
+                                    {{data.AppContent}}
+                                </div>
+                                <div id="AppDate" class="mb-3">
+                                    {% if data.AppType == "web" %}
+                                    <small class="text-danger m-3">Web</small>
+                                    {% elif data.AppType == "desktop" %}
+                                    <small class="text-danger m-3">Masaüstü</small>
+                                    {% elif data.AppType == "mobile" %}
+                                    <small class="text-danger m-3">Mobil</small>
+                                    {% endif %}
+                                    {{data.UpdateDate}}
+                                </div>
+                            </div>
+                            <center><a href="{% url 'AppDetail' data.id %}"
+                                    class="text-decoration-none" id="examin">İncele</a></center>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <span class="alert text-light">
+                        <center>
+                            <p class="h4">Henüz eklenmiş uygulama yok</p>
+                            <small class="text-danger">İlk Uygulama Ekleyen Sen
+                                Ol!</small>
+                            <br>
+                            <br>
+                            <i class="fas fa-angle-double-down h3"></i>
+                            <br>
+                            <a href="{% url 'NewApp' %}" id="AddAppButton"
+                                title="Uygulamanı Paylaş"><i class="fas
+                                    fa-plus"></i></a>
+                        </center>
+                    </span>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <script
+            src="https://kit.fontawesome.com/326457a07e.js"
+            crossorigin="anonymous"></script>
+        {% endblock content %}
+    </body>
+</html>

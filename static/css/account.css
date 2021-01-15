@@ -1,0 +1,22 @@
+
+@media (min-width:500px){
+    #card{
+        width: 70%;
+        background-color: #272E3D;
+    }
+    .btn{
+        border: 1px solid white;
+    }
+}
+@media(max-width:499px){
+    #card{
+        width: 80%;
+        background-color: #272E3D;
+    }
+    .btn{
+        border: 1px solid white;
+    }
+}
+#Row{
+    min-height: 300px;
+}

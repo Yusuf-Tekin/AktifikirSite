@@ -1,0 +1,155 @@
+
+{% extends 'template.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+            Ev
+            {% endblock title %}
+        </title>
+
+    </head>
+    <body>
+        {% block content %}
+        <h1 class="text-light" style="margin-left: 30px;
+            top: 10px;
+            position: absolute;
+            font-size: 3vw;">Ev</h1>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-xl-12 mt-5">
+                <div class="alert alert-warning mx-auto w-75">Bu site sıfırdan tarafımca kodlanmıştır.Gördüğünüz hatalar,olmasını istediğiniz eksiklikler veya belirtmek istediğiniz düşünceleri sayfanın altındaki bölümden bana ulaştırabilirsiniz.Şimdiden Teşekkürler!</div>
+            </div>
+            <div class="col-12 col-sm-12 col-xl-4">
+                <p id="AppName">
+                    Aktif<br>Fikir
+                    <p id="AppSlogan">
+                        Bir fikir uygulaması!
+                    </p>
+                </p>
+
+                
+            </div>
+            <div class="col-12 col-sm-12 col-xl-7">
+
+                <div class="card" id="Right">
+                    <div class="card-body p-5">
+                        <p class="h2"><i class="fas fa-house-user"></i>  Merhaba,<font color="lightgray">{{request.user.username}}</font></p>
+                        <hr>
+                        <h4>Uygulamalar sayfasında ne var?</h4>
+                        <p>Bu sayfada diğer geliştiricilerin geliştirmiş olduğu
+                            uygulamaları görebilirsiniz.Ayrıca bu programları
+                            inceleyebilir veya kaynak kodlarına erişebilirsiniz.</p>
+                        <br>
+                        <h4>Fikirler sayfasında ne var?</h4>
+                        <p>Bu sayfada diğer insanların geliştirmek istediği
+                            ancak bir takım sebeplerden dolayı
+                            geliştiremedikleri aktif fikirler bulunmaktadır.Bu
+                            fikirlerden herhangi biri kafanıza yatmışsa hemen
+                            kodlamaya başlayabilirsiniz.</p>
+                        <span id="imagethink">
+                            <img id="image" class="img-fluid" src="{% static 'images/think.png' %}">
+                        </span>
+                        <a href="{% url 'Ideas' %}" id="LetsGoButton">Haydi Başlayalım</a>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+            
+            <br>
+            <hr class="mt-5">
+            <br>
+            <div class="col-12 col-sm-12 col-xl-12">
+                <div class="card" id="DesktopAppCard">
+                    <div class="card-body">
+                        <span id="Header">
+                            <h4 class="pt-5"><font color="lightblue">Aktif Fikir</font> masaüstü uygulamasını indirin</h4>
+                            <p id="smalltext" class="p-1">Verilerinizi daha
+                                kolay yönetin</p>
+                        </span>
+
+                        <span id="Header">
+                            <center>
+                                <img src="{% static 'images/DesktopApp.png' %}"
+                                    alt="DesktopApp">
+                                <br>
+
+                                <h2 class="text-danger mt-3">Uygulama Henüz Yayımlanmadı</h2>
+                                <button id="DesktopButton" class="mt-4">Yakında!</button>
+                            </center>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+
+            <span class="mt-5"></span>
+            <hr>
+            <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                <center>
+                    <div id="contactform">
+                        <h5 id="bottomhead">Görüşler ve öneriler için ...</h5>
+                        <form class= "sendmail">
+                            {% csrf_token %}
+                            <input id="formusername" type="text"
+                                value="{{request.user.username}}"
+                                readonly>
+                            <br>
+                            <input type="text" id="formheader" maxlength="100"
+                                placeholder="Konu Başlığı">
+                            <br>
+                            <textarea id="formmessage" maxlength="1000"
+                                cols="46" rows="5" placeholder="Konu İçeriği"></textarea>
+                            <br>
+                            <button type="submit"
+                                id="FormSubmitButton">Gönder</button>
+                        </form>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        
+                    </div>
+                </center>
+            </div>
+        </div>
+        <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
+        <script>
+            $('.sendmail').submit(function(event){
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url : '/sendmail/',
+                    data:{
+                        'subject' : $('#formheader').val(),
+                        'message' :$('#formmessage').val(),
+                        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+
+                    }
+                    ,success: function(jsonmessage){
+                        
+                        if(jsonmessage.msg == 'true'){
+                            toastr.success('Mesajınız tarafıma iletildi.Teşekkürler')
+                            document.querySelector('#formheader').value = ""
+                            document.querySelector('#formmessage').value = ""
+                        }
+                        else if(jsonmessage.msg == 'false'){
+                            toastr.error('Mesajınız gönderilemedi.Daha sonra tekrar deneyin!')
+                        }
+                    },
+                    error:function(){
+                        toastr.error('Mesajınız sistem hatasından dolayı gönderilemedi.')
+                    }
+                })
+            })
+        </script>
+        {% endblock content %}
+
+    </body>
+</html>

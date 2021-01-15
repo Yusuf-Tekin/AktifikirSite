@@ -1,0 +1,72 @@
+{% extends 'template.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+            Fikirler
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        {% block content %}
+        <p id="SekmeAdi" class="text-light"
+            style="margin-left: 30px;
+            top: 10px;
+            position: absolute;
+            font-size: 3vw;">Fikirler</p>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                    <img src="{% static 'images/idea.png' %}"
+                        style="position: absolute; margin-top: 20px;" width="40"
+                        height="40">
+                    <a href="{% url 'NewIdea' %}" id="NewAppButton" title="Fikrini diğer insanlar ile paylaş"><i class="fas fa-plus"></i></a>
+                    <hr style="border: 1px solid white;margin-top: 70px;">
+                </div>
+                <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                    <div class="row">
+                        {% if data %}
+                            {% for data in data %}
+                            <div class="col-12 col-sm-12 col-lg-6 col-xl-4 mt-4">
+                                    <h4 class="text-light">{{data.Owner}}</h4>
+                                    <div class="card-header" style="color: white;background-color: #272E3D;">
+
+                                        <center><h4 id="three-dot" class="h4 p-xl-3">{{data.IdeaHeader}}</h4></center>
+                                    </div>
+                                    <div class="card-body" style="background-color: #4F5F7D;">
+                                        <center>
+                                            <div id="three-dot" class="text-light">{{data.IdeaContent}}</div>
+                                        </center>
+                                        <br><br>
+                                        <small class="text-light float-end">{{data.UpdateDate}}</small>
+                                        <a href="{% url 'IdeaDetail' data.id %}" id="examin" class="mt-4 position-relative text-decoration-none">İncele</a>
+                                    </div>  
+
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                        <span class ="alert text-light">
+                            <center>
+                            <p class = "h4">Henüz kimse fikrini sunmamış</p>
+                            <small class = "text-danger">Fikrini İlk Sunan Sen Ol!</small>
+                            <br>
+                            <br>
+                            <i class="fas fa-angle-double-down h3"></i>
+                            <br>
+                            <a href = "{% url 'NewIdea' %}" id="AddIdeaButton" title="Fikrini Paylaş"><i class="fas fa-plus"></i></a>
+                            </center>
+                        </span>
+                        {% endif %} 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endblock content %}
+    </body>
+</html>

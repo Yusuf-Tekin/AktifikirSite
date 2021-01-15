@@ -1,0 +1,165 @@
+#AppsHeader{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+    font-size: 12px;
+}   
+#NewAppButton{
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    float: right;
+    margin-left: auto;
+    background-color: #272E3D;
+    border-radius: 5px;
+    padding: 12px 18px;
+    font-size: 12px;
+    color: white;
+    border: 1px solid white;
+    transition: 0.5s;
+    outline: none;
+    animation: pulse-animation 1s infinite;
+    text-decoration: none;
+    text-align: center;
+}
+#NewAppButton:hover{
+    cursor: pointer;
+    background-color: #4F5F7D;
+}
+
+#AddAppButton{
+    color: #FFF;
+    background-color: #272E3D;
+    border-radius: 0px;
+    padding: 10px 18px;
+    display: inline-block;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    outline: none;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #4F5F7D;
+    transition: 1s;
+    animation: pulse-animation 1s infinite;
+}
+#AddAppButton:Hover{
+    box-shadow: inset 400px 0 0 0 #4F5F7A;
+}
+#NewAppCard{
+    width: 75%;
+    background-color: #272E3D;
+}
+#select{
+    border: none;
+    border-radius: 6px;
+    height: 40px;
+    padding-left: 10px;
+}
+#sharebutton{
+    width: 120px;
+    position: relative;
+    right: 0px;
+    border: 1px solid;
+    background-color: #272E3D;
+    border-radius: 5px;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    color: white;
+    transition: 1s;
+    outline: none;
+    float: right;
+    animation: pulse-animation 1s infinite;
+    text-decoration: none;
+}
+#sharebutton:hover{
+    background-color: #4F5F7D;
+}
+#DataCard{
+    position: relative;
+    border: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    transition: 1s;
+
+}
+#DataCard img{
+    border-bottom: 1px solid white;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+}
+#dataCenter{
+    background-color: #272E3D;
+    color:white;
+    width: 300px;
+}
+#AppContent{
+    margin-left: 25px;
+    font-size: 15px;
+    overflow: hidden; /* taşacak kısımları gizle. */
+    white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+    text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+    margin-right: 20px;
+}
+#AppDate{
+    float:right;
+    margin-right: 25px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+.card-footer{
+    background: none;
+    border: none;
+}
+#like{
+    position: absolute;
+    float: right;
+    font-size: 20px;
+    border-radius: 36px;
+    color: #d9534f;
+    transition: 0.5s;
+}
+#like:hover{
+    cursor: pointer;
+    box-shadow: 1px 1px 80px #d9534f;
+}
+#examin{
+    width: 80px;
+    padding: 8px 8px;
+    border: none;
+    background-color: #272E3D;
+    border-radius: 6px;
+    color: white;
+}
+@media(min-width:801px){
+    #dataCenter h5{
+        margin-left: 20px;
+        font-size: 20px;
+        overflow: hidden; /* taşacak kısımları gizle. */
+        white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+        text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+        margin-right: 20px;
+        
+    }
+    
+}
+@media (max-width:800px){
+    #dataCenter h5{
+        margin-left: 20px;
+        font-size: 18px;
+        overflow: hidden; /* taşacak kısımları gizle. */
+        white-space: nowrap; /* alt satırı gösterme, alt satıra inme. */
+        text-overflow: ellipsis; /* uzunsa sonuna üç nokta koy. */ 
+        margin-right: 20px;
+    }
+}
+@media(max-width : 450px){
+    #NewAppButton{
+        margin-right: 60px;
+    }
+}

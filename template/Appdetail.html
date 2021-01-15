@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Detay
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    {% block content %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12 col-xl-4">
+                <center><img src = "{{MEDIA_URL}}/{{data.AppPhoto}}" width="400" id="image" class="img-fluid mt-4"></center>
+                <center>
+                    {% if data.AppType == "web" %}
+                        <small class="text-danger">Web</small>
+                    {% elif data.AppType == "mobile" %}
+                        <small class="text-danger">Mobil</small>
+                    {% elif data.AppType == "desktop" %}
+                        <small class="text-danger">Masaüstü</small>
+                    {% endif %}
+
+                    • <small class="text-light">{{data.UpdateDate}}</small> • <small class="text-light">{{data.Owner}} paylaştı</small></center>
+            </div>
+            <div class="col-12 col-sm-12 col-xl-8 mt-2">
+               <center>
+                <div id="Data" class="w-75">
+                    <h2 class="text-light">{{data.AppHeader}}</h2>
+                    <br>
+                    <p class="text-light">{{data.AppContent}}</p>
+                </div>
+                <hr>
+                <div class="text-light">
+                    Uygulama Linki: <a href="{{data.AppLink}}" target="_blank">Git</a>
+                </div>
+               </center>
+            </div>
+            
+        </div>
+    </div>
+
+    {% endblock content %}
+</body>
+</html>

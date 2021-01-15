@@ -1,0 +1,47 @@
+{% extends 'template.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Detay
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    {% block content %}
+
+    <div class="container mt-5">
+        <div class="row">
+            
+            <div class="col-12 col-sm-12 col-xl-12 mt-2">
+               <center>
+                <div id="Data" class="w-75">
+                    <h2 class="text-light">{{data.IdeaHeader}}</h2>
+                    <br>
+                    <p class="text-light">{{data.IdeaContent}}</p>
+                </div>
+                <hr>
+               </center>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                <center>
+                    {% if data.IdeaType == "web" %}
+                        <small class="text-danger">Web</small>
+                    {% elif data.IdeaType == "mobile" %}
+                        <small class="text-danger">Mobil</small>
+                    {% elif data.IdeaType == "desktop" %}
+                        <small class="text-danger">Masaüstü</small>
+                    {% endif %}
+
+                    • <small class="text-light">{{data.UpdateDate}}</small> • <small class="text-secondary">{{data.Owner}}</small></center>
+            </div>
+            
+        </div>
+    </div>
+
+    {% endblock content %}
+</body>
+</html>

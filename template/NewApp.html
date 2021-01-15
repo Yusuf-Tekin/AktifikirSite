@@ -1,0 +1,71 @@
+{% extends 'template.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+            Yeni Uygulama Paylaş
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        {% block content %}
+        <div class="container mt-5">
+            <div class="row">
+                <center>
+                    
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                        <div class="card text-light " id="NewAppCard">
+                            <div class="card-header">
+                                <img src="{% static 'images/new.png' %}" width="48"
+                                    height="48" class="position-absolute img-fluid"
+                                    style="left: 2px; top: 2px;">
+                                <center>
+                                    <h3 style="font-size: 3vw;">Yeni Uygulama Paylaş</h3>
+                                </center>
+                            </div>
+                            <div class="card-body">
+                                    <form id="NewAppForm" action="{% url 'NewApp' %}" method="POST"  enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control"
+                                                placeholder="Uygulama Başlığı" required id="header" name="header"
+                                                >
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="file" accept="image/*" id="photo" name="photo"
+                                                class="form-control">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <select class="custom-select w-100" id="select" name="select">
+                                                <option value="web" selected>Web Uygulaması</option>
+                                                <option value="desktop">Masaüstü Uygulaması</option>
+                                                <option value="mobile">Mobil Uygulama</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2 mr-sm-2">
+                                            <input type="url" class="form-control" name="link" id="link" placeholder="Uygulama Linki">
+                                          </div>
+                                        <div class="input-group mb-3">
+                                           <textarea class="form-control" name="content" id="content" aria-describedby="basic-addon1" maxlength="200" rows="5" placeholder="Uygulama Detayı"></textarea>
+                                        </div>
+            
+                                        <button type="submit" id="sharebutton">
+                                            Paylaş
+                                        </button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        {% endblock content %}
+    </body>
+</html>

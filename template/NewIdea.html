@@ -1,0 +1,102 @@
+{% extends 'template.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+            Fikrini Paylaş
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        {% block content %}
+        <div class="container mt-5 mb-lg-5">
+            <div class="card text-light mx-auto p-3" id="NewAppCard">
+                <div class="card-header">
+                    <img src="{% static 'images/new.png' %}" width="48"
+                        height="48" class="position-absolute img-fluid"
+                        style="left: 2px; top: 2px;">
+                    <center>
+                        <h3 style="font-size: 3vw;">Fikrini Paylaş</h3>
+                    </center>
+                </div>
+                <div class="card-body">
+                    <span class="75">
+                        <form id="NewAppForm"  enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control"
+                                    placeholder="Fikir Başlığı" required id="header"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group mb-3">
+                                <select class="custom-select w-100" id="select">
+                                    <option value="web" selected>Web Uygulaması</option>
+                                    <option value="desktop">Masaüstü Uygulaması</option>
+                                    <option value="mobile">Mobil Uygulama</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                               <textarea class="form-control" id="Content" aria-describedby="basic-addon1" maxlength="200" rows="5" placeholder="Fikrinin Detayı"></textarea>
+                            </div>
+
+                            <button type="submit" id="sharebutton">
+                                Paylaş
+                            </button>
+                        </form>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            header =document.querySelector('#header')
+            content = document.querySelector('#Content')
+            select = document.querySelector('#select')
+            photo = document.querySelector('#Photo')
+            link = document.querySelector('#link')
+            $('#NewAppForm').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url: '/newidea/',
+                    data: {
+                        'Header' : $('#header').val(),
+                        'Content' : $('#Content').val(),
+                        'Type' : $('#select').val(),
+                        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success:function(json){
+                        header.value = ""
+                        content.value = ""
+                        Swal.fire(
+                        {
+                            icon: 'success',
+                            title: 'Tebrikler',
+                            text: 'Fikrini diğer insanlarla başarıyla paylaştın.',
+                            confirmButtonText : "Kapat",
+                        }   
+                        )
+                    }
+                    ,
+                    error: function(){
+                        Swal.fire(
+                        {
+                            icon: 'error',
+                            title: 'Üzgünüm',
+                            text: 'Bizden kaynaklanan bir hata yüzünden fikrini paylaşamadık.\n Daha sonra tekrar dene',
+                            confirmButtonText : "Kapat",
+                        });
+                    }
+                })
+            })
+               
+        </script>
+
+        {% endblock content %}
+    </body>
+</html>
